@@ -1,55 +1,225 @@
-# 03 — Validation and Testing
+03 — Validation and Testing
+Overview
 
-## Overview
+The XLSForm was tested throughout development to verify the form structure, question types, required fields, conditional logic, constraints, calculations, and media references.
 
-The XLSForm was tested throughout development to verify that the form structure, question types, required fields, conditional logic, constraints, calculations, and media references were working as intended.
+Testing was performed using the ODK XLSForm validation and preview process.
 
-Testing was performed using the ODK XLSForm validation/preview process.
-
----
-
-## XLSForm Validation
+XLSForm Validation
 
 The completed XLSForm was submitted for ODK validation.
 
 The validation process was used to identify structural and logic errors in the form before finalizing the submission.
 
-### Validation Status
+Validation Status
 
-**Final validation result:** `Form is valid`
+Final validation result: Form is valid
 
-> Add the final validation screenshot to the `validation/` folder as evidence.
+A screenshot of the validation result will be stored in:
 
----
+validation/xlsform-validation.png
 
-## Validation and Functional Tests
+Functional Testing
+1. Required Fields
 
-### 1. Required Fields
+Fields marked with * in the original PDF were implemented as required fields.
 
-Fields marked with `*` in the original PDF were implemented as required fields.
-
-**Test:**
+Test:
 Leave a required field empty.
 
-**Expected result:**
-The form should not allow the user to proceed without completing the required field.
+Expected:
+The form should require the field to be completed.
 
-**Result:**
+Result:
 Passed.
 
----
-
-### 2. Consent Date
+2. Consent Date
 
 The consent section contains a date field.
 
-**Test:**
+A constraint was added to prevent future dates.
+
+Constraint:
+
+. <= today()
+
+Test:
 Enter a date later than the current date.
 
-**Expected result:**
+Expected:
 The form should reject the date.
 
-**Constraint:**
+Result:
+Passed.
 
-```text
+3. Date of Birth
+
+The Personal Information section contains a Date of Birth field.
+
+A constraint was added to prevent future dates.
+
+Constraint:
+
 . <= today()
+
+Test:
+Enter a future date.
+
+Expected:
+The form should reject the date.
+
+Result:
+Passed.
+
+No age restriction was added because the PDF does not specify an age requirement.
+
+4. Two-Piece Identification
+
+The PDF specifies that the subject's name must be identified using two pieces of identification.
+
+Test:
+Select only one identification document.
+
+Expected:
+The form should reject the response because two pieces are required.
+
+Test:
+Select two or more identification documents.
+
+Expected:
+The identification requirement should be satisfied.
+
+Result:
+Passed.
+
+5. Other Identification
+
+The Other ID field is conditionally displayed.
+
+Test:
+Select Other from the identification choices.
+
+Expected:
+The Other ID field should appear.
+
+Test:
+Do not select Other.
+
+Expected:
+The Other ID field should remain hidden.
+
+Result:
+Passed.
+
+6. Driver's Licence
+
+The driver's licence fields are conditionally displayed.
+
+Test:
+Select MB Driver's License with Photo.
+
+Expected:
+
+Driver's licence number field appears.
+Optional driver's licence photo field appears.
+
+Test:
+Do not select the driver's licence option.
+
+Expected:
+The driver's licence fields remain hidden.
+
+Result:
+Passed.
+
+7. Last Criminal Risk Assessment Date
+
+The PDF describes this field as (if known), so the field remains optional.
+
+A future-date constraint was added.
+
+Constraint:
+
+. <= today()
+
+Test 1:
+Leave the field blank.
+
+Expected:
+The field can remain blank.
+
+Test 2:
+Enter a future date.
+
+Expected:
+The form should reject the date.
+
+Result:
+Passed.
+
+8. Phone Number Validation
+
+Phone-number validation was added to the relevant phone fields.
+
+Test:
+Enter an invalid phone number.
+
+Expected:
+The form should reject the value.
+
+Test:
+Enter a valid phone number according to the implemented format.
+
+Expected:
+The form should accept the value.
+
+Result:
+Passed.
+
+9. Email Validation
+
+Email-format validation was added to the required designate email field.
+
+Test:
+Enter an invalid email address.
+
+Expected:
+The form should reject the value.
+
+Test:
+Enter a valid email address.
+
+Expected:
+The form should accept the value.
+
+Result:
+Passed.
+
+10. Signature
+
+The consent section contains a signature input.
+
+Test:
+Enter a signature.
+
+Expected:
+The signature should be captured successfully.
+
+Result:
+Passed.
+
+Issues Encountered During Development
+
+Several issues were encountered during the development and validation process, including:
+
+Missing calculation errors
+Incorrect image parameter placement
+Invalid constraint expressions
+Circular dependencies in calculation/relevance logic
+Image-rendering issues in the preview environment
+
+These issues were investigated and corrected where possible.
+
+The image-rendering issue is documented separately in:
+
+04-image-rendering-issue.md
