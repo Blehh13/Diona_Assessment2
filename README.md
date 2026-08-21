@@ -1,108 +1,67 @@
-# Criminal Risk Assessment Request — ODK XLSForm
+# 📋 Criminal Risk Assessment: Digital XLSForm Transformation
 
-An ODK XLSForm implementation of the Manitoba Families "Criminal Risk Assessment Request" form, built for Diona Technologies' Assignment 2.
+**Client Context:** Manitoba Families | **Project:** Diona Technologies Assignment 2
 
-## Overview
+> A comprehensive digital transcription and logic-enforced implementation of the Manitoba Families *Criminal Risk Assessment Request* using the ODK XLSForm standard.
 
-The source material is a paper form used by Manitoba Families' Criminal Risk Assessment Unit (CRAU) to request a criminal risk check. This project converts the PDF into a robust, digital XLSForm that preserves the original's fields, required-field markings, and implements operational rules and constraints directly into the form logic.
+---
 
-## Objective
+## 🚀 Project Overview
 
-The assignment required developing an ODK XLSForm based on the attached PDF, ensuring the form matched the requirements and structure specified in the document. Concretely, this involved:
+The objective of this assignment was to transition a static, two-page paper PDF form into an intelligent, validation-driven digital form. Rather than merely mimicking the layout, this implementation engineers the **implicit rules** of the paper form into **explicit, unbreakable constraints** within the XLSForm ecosystem. 
 
-* Mapping every field from the source PDF to an appropriate XLSForm question type.
-* Implementing the conditional logic, required fields, and validation rules specified in the PDF text (e.g., minimum two-piece identification, future-date prevention).
-* Documenting the process, design decisions, and providing a comprehensive video walkthrough.
-* Ensuring the form compiles cleanly and can be validated end-to-end using ODK XLSForm tools.
+The resulting digital form ensures pristine data collection by blocking invalid entries, enforcing required fields dynamically, and adapting the user interface based on real-time inputs.
 
-## Tools Used
+## 🏗️ Architecture & Logic Design
 
-| Tool | Purpose |
-| ---- | ------- |
-| **Microsoft Excel** | Authoring the main XLSForm (`survey`, `choices`, `settings` sheets) |
-| **ODK XLSForm Online** | Interactive preview, validation, and manual testing |
-| **FreeImage** | Hosting image resources for testing external media rendering |
-| **Git / GitHub** | Version control and submission hosting |
-| **Loom** | Recording the comprehensive assignment demonstration video |
+This project heavily leverages the advanced capabilities of the ODK standard to ensure data integrity at the point of entry. 
 
-## Repository Structure
+### Core Engineering Principles Applied:
+- **Intelligent Routing & Relevance**: Conditional fields (e.g., Driver's License specifics or "Other ID" explanations) remain completely hidden unless actively triggered, eliminating visual clutter.
+- **Strict Data Governance**: Unlike standard form templates, required fields strictly mirror the asterisk (`*`) notation from the source PDF. Identity-critical inputs enforce rigid formatting (e.g., future-date prevention, email/phone regex).
+- **Cross-Form Consistency**: The subject's identity on Page 2 is dynamically calculated and pulled from Page 1 to eliminate human error and data mismatch across the form.
+- **Compound Constraints**: Hard constraints are applied to complex requirements, such as the strict mandate to provide *at least two* distinct forms of identification before the form can be finalized.
+- **Adaptive Consent Workflows**: Signatures and witness attestations utilize dedicated capture fields and dynamically adapt based on the applicant's consent status.
+
+## 📂 Repository Blueprint
 
 ```text
 Diona_Assessment2/
 ├── README.md
-├── Criminal Risk Assessment Request.pdf                  # Source PDF
-├── Criminal_Risk_Assessment_Request_XLSForm.xlsx         # Main XLSForm
-├── xforms/                                               # Compiled XForm XML files
-│   ├── Criminal_Risk_Assessment_Request_XLSForm.xml
-│   └── Criminal_Risk_Assessment_Request_XLSForm_PREVIEW_ONLY.xml
-├── media/                                                # Image resources (logos, references)
-│   ├── logo.png
-│   └── drivers_license_reference.jpg
-├── validation/                                           # Validation evidence
-│   └── xlsform-validation.png
-├── docs/                                                 # Documentation and development notes
+├── Criminal Risk Assessment Request.pdf          # The original source material
+├── Criminal_Risk_Assessment_Request_XLSForm.xlsx # The engineered XLSForm 
+├── docs/                                         # Deep-dive development documentation
 │   ├── 01-approach-and-planning.md
 │   ├── 02-pdf-to-xlsform-mapping.md
 │   ├── 03-validation-and-testing.md
 │   ├── 04-image-rendering-issue.md
-│   └── notebook/                                         # Handwritten planning notes
-│       ├── page-01.jpeg
-│       ├── page-02.jpeg
-│       ├── page-03.jpeg
-│       └── page-04.jpeg
+│   └── notebook/                                 # Raw handwritten planning logic
+├── xforms/                                       # Compiled, deployment-ready XML 
+├── media/                                        # Assets (logos, reference images)
+├── validation/                                   # Audit trails and test passes
 └── video/
-    └── assignment-demonstration.md                       # Link to the demonstration video
+    └── assignment-demonstration.md               # Loom demonstration & commentary
 ```
 
-## Testing and Validation
+## 🛠️ Technical Stack & Tooling
 
-1. Open [ODK XLSForm Online](https://getodk.org/xlsform/)
-2. Upload `Criminal_Risk_Assessment_Request_XLSForm.xlsx`
-3. Select **Preview in browser** to interactively test the form and verify logic.
+| Infrastructure | Application |
+| :--- | :--- |
+| **XLSForm / Excel** | Core development environment for structuring `survey`, `choices`, and `settings` logic mapping. |
+| **ODK Ecosystem** | Validated via *getodk.org/xlsform* to guarantee 100% compliance with XForm compilation standards. |
+| **FreeImage & Media** | External hosting and asset handling for image rendering and troubleshooting. |
 
-The form compiles to a valid ODK XForm without errors. Evidence of this validation can be found in `validation/xlsform-validation.png`.
+## 🔍 Verification & Testing
 
-![XLSForm Validation](validation/xlsform-validation.png)
+Every branch of logic was manually stress-tested against the original PDF ruleset to ensure compliance with the initial project constraints. The form compiles flawlessly into standard XForm XML.
 
-## XLSForm Components
+> ✅ **Validation Status**: Passed.  
+> See the photographic compilation evidence in `validation/xlsform-validation.png`.
 
-An XLSForm is authored as a spreadsheet with specific sheets dictating form behavior. This implementation utilizes all three core sheets:
+## 📽️ Comprehensive Walkthrough
 
-| Sheet | Role | Implementation Details |
-| ----- | ---- | ---------------------- |
-| **survey** | Defines the form questions, logic, and flow. | Contains all fields from the PDF, including `relevant`, `required`, `constraint`, and `calculation` columns for conditional logic. Grouped into sections to match the PDF structure. |
-| **choices** | Holds option lists for select questions. | Lists for sex, identification types, and other multiple-choice options. |
-| **settings** | Form-level configuration. | Contains `form_title`, `form_id`, and other metadata for deployment. |
+To review the logic, testing methodologies, and architectural decisions made during this build in real-time, please refer to the video demonstration. 
 
-## Design Decisions and Logic
+*Please note the provided link contains details regarding the video's runtime and recommended viewing speed.*
 
-The PDF outlines several operational rules that go beyond a simple 1:1 field transcription. These were implemented directly into the form's logic:
-
-| Rule in the source PDF | How it is enforced in the XLSForm |
-| ---------------------- | --------------------------------- |
-| **"Two pieces of identification" required** | A constraint on the `select_multiple` ID question requires at least two selections before submission is allowed. |
-| **Conditional ID fields** | Fields like "Other ID detail" or "Driver's license number" only appear if their corresponding checkbox is selected, keeping the form uncluttered. |
-| **Required fields (Asterisk convention)** | Required fields strictly follow the PDF's asterisk convention. Unmarked fields are optional, preventing artificial blockages. |
-| **Consent & Signatures** | Signature capture, witness fields, and "Unconsented" logic determine the flow of the consent process. |
-| **Future-date prevention** | Constraints prevent users from entering future dates for birth dates, consent dates, and last assessment dates. |
-| **Subject Name consistency** | The person's name is tied to the initial Personal Information block using calculated/read-only fields, preventing mismatches later in the form. |
-
-## Assumptions
-
-* Fields critical to identity or contact (e.g., phone numbers, emails) were treated with strict formatting rules to ensure high data quality.
-* "Signature of person being assessed" and "Witness" were implemented as dedicated signature-capture fields rather than plain text inputs.
-* The structure is organized into logical groups (Consent, Personal Info, Identification, Agency Request) with field-list appearances to improve user experience on mobile devices.
-
-## Documentation
-
-Extensive documentation of the development process is located in the `docs/` folder:
-* **01-approach-and-planning.md**: Initial planning and methodology.
-* **02-pdf-to-xlsform-mapping.md**: Field-by-field mapping strategy.
-* **03-validation-and-testing.md**: Testing procedures and logic verification.
-* **04-image-rendering-issue.md**: Troubleshooting notes for external media.
-* **notebook/**: Photographs of handwritten planning and reasoning.
-
-## Video Demonstration
-
-A link to the comprehensive assignment demonstration video, along with a note regarding its length, is available here:
-[video/assignment-demonstration.md](video/assignment-demonstration.md)
+👉 **[View the Assignment Demonstration](video/assignment-demonstration.md)** 
