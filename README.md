@@ -39,10 +39,14 @@ During the development and testing phase, an issue was encountered where images 
 
 A detailed breakdown of this problem and the troubleshooting process can be found in [docs/04-image-rendering-issue.md](docs/04-image-rendering-issue.md).
 
-* **XLSForm with image preview error:**
-  `Criminal_Risk_Assessment_Request_XLSForm_PREVIEW_ONLY.xlsx`
-* **Fixed version with image redirection:**
+* **XLSForm with local media preview error:**
   `Criminal_Risk_Assessment_Request_XLSForm.xlsx`
+  👉 [Live Interactive Preview (Error Version)](https://staging.enketo.getodk.org/preview?form=https%3A//staging.xlsform.getodk.org/downloads/ff8877d4732c4402986678ac6eb97b1dnfkvtxlx/Criminal_Risk_Assessment_Request_XLSForm.xml)
+* **Final fixed version with image redirection:**
+  `Criminal_Risk_Assessment_Request_XLSForm_PREVIEW_ONLY.xlsx`
+  👉 [Live Interactive Preview (Final Version)](https://staging.enketo.getodk.org/preview?form=https%3A//staging.xlsform.getodk.org/downloads/0816e1385eac42b6beac7445e334494a0ha257rb/Criminal_Risk_Assessment_Request_XLSForm_PREVIEW_ONLY.xml)
+
+*(Note: The live preview links above are temporary staging links generated via the ODK validation server. If they have expired, please compile the source `.xlsx` files provided.)*
 
 ## Repository Blueprint
 
@@ -50,8 +54,8 @@ A detailed breakdown of this problem and the troubleshooting process can be foun
 Diona_Assessment2/
 ├── README.md
 ├── Criminal Risk Assessment Request.pdf                      # The original source material
-├── Criminal_Risk_Assessment_Request_XLSForm.xlsx             # The engineered XLSForm (Fixed image redirection)
-├── Criminal_Risk_Assessment_Request_XLSForm_PREVIEW_ONLY.xlsx# XLSForm with image preview error
+├── Criminal_Risk_Assessment_Request_XLSForm.xlsx             # XLSForm with local media preview error
+├── Criminal_Risk_Assessment_Request_XLSForm_PREVIEW_ONLY.xlsx# The engineered XLSForm (Fixed image redirection)
 ├── docs/                                                     # Deep-dive development documentation
 │   ├── 01-approach-and-planning.md
 │   ├── 02-pdf-to-xlsform-mapping.md
