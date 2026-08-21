@@ -23,6 +23,16 @@ This project heavily leverages the advanced capabilities of the ODK standard to 
 - **Compound Constraints**: Hard constraints are applied to complex requirements, such as the strict mandate to provide *at least two* distinct forms of identification before the form can be finalized.
 - **Adaptive Consent Workflows**: Signatures and witness attestations utilize dedicated capture fields and dynamically adapt based on the applicant's consent status.
 
+## XLSForm Structure & Implementation
+
+The core logic of this project is driven entirely by the `Criminal_Risk_Assessment_Request_XLSForm.xlsx` spreadsheet, strictly adhering to the ODK XLSForm standard. The architecture of the document is divided into three foundational sheets:
+
+- **The `survey` Sheet**: The primary engine of the form. It contains the complete translation of the paper PDF into sequential digital prompts. This sheet houses the advanced `relevant` logic columns to handle dynamic field rendering (e.g., hiding driver's license inputs unless specifically requested) and `constraint` columns enforcing regex rules on emails, phone numbers, and date boundaries (preventing future dates).
+- **The `choices` Sheet**: Acts as the internal database for all cascading and static dropdown options. It holds the standardized ID types, gender selection options, and assessment reasons, keeping the main survey sheet modular and easily maintainable.
+- **The `settings` Sheet**: Configures the high-level form metadata, establishing the form ID, versioning control, and the unique form title that appears on the user's data collection device.
+
+This spreadsheet-driven approach ensures that complex validation rules—such as requiring *at least two* distinct forms of identification—are permanently embedded in the form's logic prior to XML compilation.
+
 ## Challenges and Troubleshooting
 
 During the development and testing phase, an issue was encountered where images (e.g., reference logos) failed to render correctly in the interactive preview environment. 
