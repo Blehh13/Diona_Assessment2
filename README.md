@@ -48,7 +48,7 @@ Diona_Assessment2/
 │   ├── 03-validation-and-testing.md
 │   ├── 04-image-rendering-issue.md
 │   └── notebook/                                             # Raw handwritten planning logic
-├── xforms/                                                   # Compiled, deployment-ready XML 
+├── xforms/                                                   # Compiled, deployment-ready XML (Note: Do not open in web browser)
 ├── media/                                                    # Assets (logos, reference images)
 ├── validation/                                               # Audit trails and test passes
 └── video/
