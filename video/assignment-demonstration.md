@@ -4,6 +4,7 @@ Please find the demonstration video for this assignment using either of the foll
 
 1. **Loom Link (Online Streaming)**: 
    https://www.loom.com/share/c6fd69da411e46b8964bd9092c6a88bd
+   *(Note: Captions are auto-generated on this platform for easier understanding)*
 2. **Local Video File**: 
    `assignment-demonstration.mp4` (Included in this folder)
 
