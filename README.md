@@ -75,6 +75,6 @@ Every branch of logic was manually stress-tested against the original PDF rulese
 
 To review the logic, testing methodologies, and architectural decisions made during this build in real-time, please refer to the video demonstration. 
 
-*Please note the provided link contains details regarding the video's runtime and recommended viewing speed.*
+*Both a Loom link and a local MP4 file are provided. They contain the exact same video, giving you two identical options for viewing.*
 
 **[View the Assignment Demonstration](video/assignment-demonstration.md)** 
