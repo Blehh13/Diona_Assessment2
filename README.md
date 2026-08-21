@@ -23,6 +23,24 @@ This project heavily leverages the advanced capabilities of the ODK standard to 
 - **Compound Constraints**: Hard constraints are applied to complex requirements, such as the strict mandate to provide *at least two* distinct forms of identification before the form can be finalized.
 - **Adaptive Consent Workflows**: Signatures and witness attestations utilize dedicated capture fields and dynamically adapt based on the applicant's consent status.
 
+## Key Technical Features & Validations
+
+- **Future-date validation for Consent Date:** Prevents the user from entering a consent date that is later than today.
+- **Future-date validation for Date of Birth:** Prevents users from entering an invalid future date of birth.
+- **Future-date validation for Last Criminal Risk Assessment Date:** Prevents a future date from being entered while keeping the field optional as specified in the PDF.
+- **Phone-number validation:** Added validation to the phone-number fields to restrict invalid phone-number entries.
+- **Email-format validation:** Added validation to the agency designate email field to ensure the entered value follows an email format.
+- **Two-piece identification requirement ⭐:** Used `select_multiple` and validation to ensure that at least two identification documents are selected, matching the requirement in the PDF.
+- **Conditional identification fields ⭐:** Added conditional logic so that:
+  - Selecting *Other* displays the *Other ID* field.
+  - Selecting *MB Driver's License with Photo* displays the driver's licence-related fields.
+- **Driver's licence image upload ⭐:** Added an image upload field so the user can upload a photo of the driver's licence when that identification option is selected.
+- **Calculated/read-only person name:** Reuses the name entered earlier instead of requiring duplicate entry.
+- **Signature capture:** Implemented the signature requirement as an actual input.
+- **Read-only informational sections:** Converted instructions, disclaimers, and other non-input content into appropriate read-only/note fields.
+- **Image troubleshooting:** Investigated the logo and driver's licence reference image issue, including testing externally hosted images through FreeImage.
+- **Documentation:** Documented the mapping, validation, image issue, and handwritten planning process in the repository.
+
 ## XLSForm Structure & Implementation
 
 The core logic of this project is driven entirely by the `Criminal_Risk_Assessment_Request_XLSForm.xlsx` spreadsheet, strictly adhering to the ODK XLSForm standard. The architecture of the document is divided into three foundational sheets:
