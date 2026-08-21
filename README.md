@@ -52,7 +52,8 @@ Diona_Assessment2/
 ├── media/                                                    # Assets (logos, reference images)
 ├── validation/                                               # Audit trails and test passes
 └── video/
-    └── assignment-demonstration.md                           # Loom demonstration & commentary
+    ├── assignment-demonstration.mp4                          # Local video file backup
+    └── assignment-demonstration.md                           # Loom demonstration link & commentary
 ```
 
 ## Technical Stack & Tooling
